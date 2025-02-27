@@ -2,14 +2,9 @@ import React from 'react';
 
 const HomePage = () => {
     return (
-        <section className="bg-gradient-to-br from-[#e3574e] to-[#8c0407]">
+        <section className="bg-gradient-to-b from-[#e3574e] to-[#8c0407]">
             <div className="relative isolate px-6 pt-14 lg:px-8"
-                 style={{
-                     backgroundImage: "url('/assets/images/banners/city3.png')",
-                     backgroundSize: "cover",
-                     backgroundRepeat: "no-repeat",
-                     backgroundPosition: "center center",
-                 }}
+
             >
                 {/* Background Effect Top */}
                 <div

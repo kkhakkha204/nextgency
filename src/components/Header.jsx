@@ -15,14 +15,14 @@ const Header = () => {
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     return (
-        <header className="absolute inset-x-0 top-0 z-50 font-primary">
+        <header className="absolute inset-x-0 top-0 z-50 font-primary ">
             <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
                 <div className="flex lg:flex-1">
                     <a href="#" className="-m-1.5 p-1.5">
 
                         <img
                             alt=""
-                            src="/assets/images/logos/logoNGson2.png"
+                            src="/assets/images/logos/logoNGson.png"
                             className="h-6 w-auto"
                         />
                     </a>
@@ -89,9 +89,9 @@ const Header = () => {
                             <div className="py-6">
                                 <a
                                     href="#"
-                                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                    className="-mx-3 block text-base/7 font-semibold text-white bg-blue-500 px-4 py-3 rounded-3xl shadow-xl hover:bg-blue-600 transition"
                                 >
-                                    Log in
+                                    Hợp tác ngay
                                 </a>
                             </div>
                         </div>
