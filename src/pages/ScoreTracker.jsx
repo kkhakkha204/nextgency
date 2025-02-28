@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {MdCancel, MdLeaderboard} from "react-icons/md";
-import { GiTrophyCup } from "react-icons/gi";
-import {IoCheckmarkCircle, IoCloseCircle} from "react-icons/io5"; // Icon cúp cho tổng điểm
+import {MdCancel, } from "react-icons/md";
 
+import {IoCheckmarkCircle, IoCloseCircle} from "react-icons/io5";
+import {FaEdit, FaRedo} from "react-icons/fa"; // Icon cúp cho tổng điểm
+import { motion } from "framer-motion";
 
 export default function ScoreTracker() {
     const [numPlayers, setNumPlayers] = useState(() => JSON.parse(localStorage.getItem("numPlayers")) || null);
@@ -70,17 +71,34 @@ export default function ScoreTracker() {
     };
 
     return (
-        <div className=" relative p-6 max-w-4xl mx-auto font-game z-50">
+        <div className=" relative p-6 max-w-4xl mx-auto font-game z-50 pt-24">
 
             {!numPlayers ? (
                 <div className="space-y-8 justify-center text-center flex flex-col">
-                    <h2 className="text-2xl">Chọn số lượng con nghiện :</h2>
-                    <button className="px-6 py-3 max-w-[200px] mx-auto rounded-3xl bg-[#647a4c] border-x-4 border-y-2 border-[#394e2d] shadow-lg text-white" onClick={() => { setNumPlayers(4); setTempPlayers(Array(4).fill("")); }}>4 Con nghiện</button>
-                    <button className="px-6 py-3 max-w-[200px] mx-auto rounded-3xl bg-[#647a4c] border-x-4 border-y-2 border-[#394e2d] shadow-lg text-white" onClick={() => { setNumPlayers(5); setTempPlayers(Array(5).fill("")); }}>5 Con nghiện </button>
+                    <h2 className="text-3xl font-extrabold drop-shadow-md flex items-center gap-3 justify-center animate-bounce-custom">
+
+                        Chọn số lượng <br/> con nghiện!
+
+                    </h2>
+
+                    <button
+                        className="px-6 py-3 max-w-[200px] mx-auto rounded-3xl bg-[#647a4c] border-x-4 border-y-2 border-[#394e2d] shadow-lg text-white"
+                        onClick={() => {
+                            setNumPlayers(4);
+                            setTempPlayers(Array(4).fill(""));
+                        }}>4 Con nghiện
+                    </button>
+                    <button
+                        className="px-6 py-3 max-w-[200px] mx-auto rounded-3xl bg-[#647a4c] border-x-4 border-y-2 border-[#394e2d] shadow-lg text-white"
+                        onClick={() => {
+                            setNumPlayers(5);
+                            setTempPlayers(Array(5).fill(""));
+                        }}>5 Con nghiện
+                    </button>
                 </div>
             ) : players.length === 0 ? (
                 <div className="space-y-6 mx-6 text-center">
-                    <h2 className="text-2xl  ">Nhập tên con nghiện :</h2>
+                    <h2 className="text-3xl font-extrabold drop-shadow-md flex items-center gap-3 justify-center animate-bounce-custom ">Nhập tên <br/> con nghiện :</h2>
                     {tempPlayers.map((_, i) => (
                         <input
                             key={i}
@@ -98,7 +116,8 @@ export default function ScoreTracker() {
                 </div>
             ) : (
                 <div className="space-y-6 ">
-                    <h2 className="text-3xl font-extrabold text-center drop-shadow-lg flex justify-center items-center gap-2">Bảng Điểm
+                    <h2 className="text-3xl font-extrabold drop-shadow-md flex items-center gap-3 justify-center animate-bounce-custom">Bảng
+                        Điểm
                     </h2>
 
                     <div
@@ -111,10 +130,11 @@ export default function ScoreTracker() {
                                 ))}
                             </tr>
                             </thead>
+
                             <tbody className="text-center">
                             <tr className="bg-[#e6b93d] font-bold">
                                 {scores.map((score, i) => (
-                                    <td key={i} className="border-2 border-[#647a4c] p-3">{score}</td>
+                                    <td key={i} className="border-2 border-[#647a4c] p-3 ">{score}</td>
                                 ))}
                             </tr>
                             {rounds.map((round, i) => (
@@ -130,26 +150,41 @@ export default function ScoreTracker() {
                     </div>
                     {/* Ảnh PNG ở góc dưới bên phải */}
                     <img
-                        src="/assets/images/logos/huong1.png" // Đặt đường dẫn đúng với ảnh PNG của bạn
+                        src="/assets/images/logos/huong1.png"
                         alt="Trophy"
-                        className="absolute bottom-0 right-0 w-28 h-auto opacity-100"
+                        className="absolute bottom-0 right-3 w-28 h-auto opacity-100 drop-shadow-[0_15px_10px_rgba(0,0,0,0.5)]"
                     />
 
-                    <button className="px-6 py-3 max-w-[200px] mx-auto rounded-3xl bg-[#647a4c] border-x-4 border-y-2 border-[#394e2d] shadow-lg text-white mr-2" onClick={() => setShowPopup(true)}>Nhập điểm
-                    </button>
-                    <button className="px-6 py-3 max-w-[200px] mx-auto rounded-3xl bg-[#6a6d5c] border-x-4 border-y-2 border-[#394e2d] shadow-lg text-white" onClick={handleNewGame}>Ván mới</button>
+
+                    <motion.button
+                        className="px-3 py-3 max-w-[200px] mx-auto rounded-full bg-[#647a4c] border-x-4 border-y-2 border-[#394e2d] shadow-lg text-white mr-2"
+                        onClick={() => setShowPopup(true)}
+                        whileHover={{scale: 1.1, rotate: 5}}
+                        whileTap={{scale: 0.9}}
+                    >
+                        Nhập Điểm
+                    </motion.button>
+
+                    <motion.button
+                        className="px-3 py-3 max-w-[200px] mx-auto rounded-full bg-[#6a6d5c] border-x-4 border-y-2 border-[#394e2d] shadow-lg text-white"
+                        onClick={handleNewGame}
+                        whileHover={{scale: 1.1, rotate: -5}}
+                        whileTap={{scale: 0.9}}
+                    >
+                        <FaRedo className="text-xl"/>
+                    </motion.button>
                     {showPopup && (
                         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                            <div className="bg-[#f2c94d] p-6 rounded-xl shadow-2xl w-96 relative">
+                            <div className="bg-[#f2c94d] p-6 rounded-xl shadow-2xl w-[22rem] relative">
                                 {/* Icon đóng popup */}
                                 <button
                                     className="absolute top-2 right-2 text-gray-800 hover:text-red-500 transition-all"
                                     onClick={() => setShowPopup(false)}
                                 >
-                                    <IoCloseCircle size={28} />
+                                    <IoCloseCircle size={28}/>
                                 </button>
 
-                                <h2 className="text-xl font-extrabold text-center text-[#647a4c] mb-4">Nhập Điểm</h2>
+                                <h2 className="text-xl font-extrabold text-center  mb-4">Nhập Điểm</h2>
 
                                 {/* Chọn người thắng */}
                                 <div className="mb-4">
@@ -168,7 +203,7 @@ export default function ScoreTracker() {
                                 {/* Nhập điểm của các người chơi khác */}
                                 {players.map((player, i) => (
                                     i !== winner && (
-                                        <div key={i} className="flex items-center space-x-3 mb-3">
+                                        <div key={i} className="flex flex-col   mb-3">
                                             <span className="w-24 font-bold text-[#647a4c]">{player}</span>
                                             <input
                                                 className="border-2 border-[#647a4c] p-2 flex-1 rounded-md focus:outline-none"
@@ -191,13 +226,13 @@ export default function ScoreTracker() {
                                         className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-opacity-80 transition-all flex items-center space-x-1"
                                         onClick={() => setShowPopup(false)}
                                     >
-                                        <MdCancel size={20} /> <span>Hủy</span>
+                                        <MdCancel size={20}/> <span>Hủy</span>
                                     </button>
                                     <button
                                         className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-opacity-80 transition-all flex items-center space-x-1"
                                         onClick={handleAddRound}
                                     >
-                                        <IoCheckmarkCircle size={20} /> <span>Xác nhận</span>
+                                        <IoCheckmarkCircle size={20}/> <span>Xác nhận</span>
                                     </button>
                                 </div>
                             </div>

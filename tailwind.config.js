@@ -20,7 +20,7 @@ module.exports = {
 
       },
       animation: {
-
+        "bounce-custom": "bounce 0.5s infinite alternate ease-in-out",
       },
       keyframes: {
 
