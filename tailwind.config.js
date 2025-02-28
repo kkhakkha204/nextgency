@@ -16,6 +16,7 @@ module.exports = {
       fontFamily: {
         primary: ["Montserrat", "sans-serif"],
         secondary: ["Roboto", "sans-serif"],
+        game: ["Coiny", "system-ui"],
 
       },
       animation: {

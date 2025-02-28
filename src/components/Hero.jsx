@@ -1,15 +1,12 @@
 import React from 'react';
+import ScoreTracker from "../pages/ScoreTracker";
+import RunningRabbit from "./RunningRabbit";
 
 const Hero = () => {
     return (
-        <div className="relative h-dvh w-screen overflow-x-hidden">
-            <div id="video-frame" className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-amber-300">
-                <div>
-                    <div className="mask-clip-path">
-
-                    </div>
-                </div>
-            </div>
+        <div className="relative h-dvh w-screen overflow-hidden bg-gradient-to-b from-[#f2c94d] via-[#f2c94d] to-[#f2c94d]">
+            <ScoreTracker/>
+            <RunningRabbit/>
         </div>
     );
 };
