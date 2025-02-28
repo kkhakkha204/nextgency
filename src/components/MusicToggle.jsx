@@ -1,16 +1,25 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const MusicToggle = () => {
     const [isPlaying, setIsPlaying] = useState(false);
-    const audioRef = useRef(new Audio("/assets/kiep-do-den-cover-cung-cac-hao-han-128-ytshorts.savetube.me.mp3")); // Đổi thành đường dẫn file nhạc của bạn
+    const audioRef = useRef(null);
+
+    useEffect(() => {
+        audioRef.current = new Audio("/assets/kiep-do-den-cover-cung-cac-hao-han-128-ytshorts.savetube.me.mp3");
+        audioRef.current.loop = true; // Lặp lại nhạc
+        audioRef.current.preload = "auto"; // Load nhạc trước để tránh delay
+    }, []);
 
     const toggleMusic = () => {
+        if (!audioRef.current) return;
         if (isPlaying) {
             audioRef.current.pause();
         } else {
-            audioRef.current.play();
+            audioRef.current.play().catch((error) => {
+                console.log("Trình duyệt chặn autoplay, cần tương tác người dùng", error);
+            });
         }
         setIsPlaying(!isPlaying);
     };
